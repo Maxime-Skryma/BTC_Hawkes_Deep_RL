@@ -1,6 +1,6 @@
 # Hawkes models and deep reinforcement learning for DOTUSDT market making
 
-**[📄 Read the paper (PDF)](Hawkes_DeepRL_MarketMaking_paper__2_.pdf)**
+[![Paper preview](docs/figures/paper_preview.png)](Hawkes_DeepRL_MarketMaking_paper.pdf)
 
 **[▶ Watch the experiment — Hawkes market making with TD3](docs/videos/HawkesMarketTD3-2.mp4)**
 
