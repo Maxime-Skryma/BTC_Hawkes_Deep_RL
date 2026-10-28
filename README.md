@@ -2,6 +2,8 @@
 
 [![Paper preview](docs/figures/paper_preview.png)](Hawkes_DeepRL_MarketMaking_paper.pdf)
 
+*Click the preview to read the full paper (PDF).*
+
 **[▶ Watch the experiment — Hawkes market making with TD3](docs/videos/HawkesMarketTD3-2.mp4)**
 
 This study is a continuation of [Spread_Crypto](https://github.com/Maxime-Skryma/Spread_Crypto).
