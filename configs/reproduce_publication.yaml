@@ -1,0 +1,48 @@
+output: experiences/reproduction_10seeds/training
+calibration: experiences/reproduction_10seeds/training/calibration.json
+market_config: configs/dot.yaml
+seeds:
+- 11
+- 23
+- 37
+- 41
+- 53
+- 67
+- 79
+- 83
+- 97
+- 101
+algorithms:
+- td3
+- sac
+- ppo
+- value_plus
+settings:
+  hidden: 64
+  transitions: 524288
+  envs: 64
+  threads: 2
+  batch: 256
+  buffer: 65536
+  start_steps: 4096
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  tau: 0.05
+  exploration_noise: 0.2
+  target_noise: 0.2
+  noise_clip: 0.5
+  policy_delay: 2
+  sac_initial_alpha: 0.02
+  sac_alpha_lr: 0.003
+  rollout: 64
+  ppo_epochs: 4
+  ppo_batch: 1024
+  ppo_clip: 0.2
+  target_kl: 0.03
+  gae_lambda: 0.95
+evaluation:
+  simulation_seconds: 300
+  simulation_paths: 256
+  simulation_seed: 2510
+  historical_split: test
+  path_sampling: 1000

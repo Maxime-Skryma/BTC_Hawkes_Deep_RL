@@ -1,0 +1,9 @@
+# Hypothèses de tick pour la période historique étudiée.
+DOTUSDT:
+  name: dot
+  raw: data/raw/dot
+  tick: 0.001
+BTCUSDT:
+  name: btc
+  raw: data/raw/btc
+  tick: 0.01

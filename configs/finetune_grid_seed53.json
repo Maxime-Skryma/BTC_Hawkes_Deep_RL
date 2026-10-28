@@ -1,0 +1,67 @@
+{
+  "name": "finetune_grid_v1_seed53",
+  "source_v1": "experiences/checkpoint_study_v1",
+  "output": "experiences/finetune_grid_v1_seed53",
+  "algorithms": [
+    "td3",
+    "sac"
+  ],
+  "fees": [
+    "retail_bnb",
+    "vip3_bnb",
+    "vip6_bnb"
+  ],
+  "seeds": [
+    53
+  ],
+  "device": "cuda",
+  "window_s": [
+    600,
+    86340
+  ],
+  "replay_seed": 11,
+  "learning_rate_scale": 0.25,
+  "settings": {
+    "transitions": 1572864,
+    "buffer": 1048576,
+    "batch": 256,
+    "tau": 0.005,
+    "updates_per_step": 8,
+    "start_steps": 16384,
+    "critic_warmup": 131072,
+    "anchor_weight": 0.4,
+    "anchor_decay": 786432,
+    "actor_ema": 0.999,
+    "exploration_noise": 0.1,
+    "sac_initial_alpha": 0.001,
+    "sac_alpha_lr": 0.0003,
+    "log_alpha_min": -9.21,
+    "dr_groups": 1,
+    "domain_randomization": {}
+  },
+  "grid": {
+    "learning_rate_scale": [
+      0.1,
+      0.25,
+      0.5
+    ],
+    "updates_per_step": [
+      2,
+      8
+    ],
+    "anchor_weight": [
+      0.0,
+      0.4
+    ]
+  },
+  "evaluation": {
+    "every_transitions": 131072,
+    "synthetic_paths": 128,
+    "synthetic_events": 512,
+    "synthetic_seed": 2026102701
+  },
+  "extra_through_ticks": [
+    1,
+    2
+  ]
+}

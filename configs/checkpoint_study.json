@@ -1,0 +1,52 @@
+{
+  "source": "experiences/robust_study_v1",
+  "output": "experiences/checkpoint_study_v1",
+  "algorithms": [
+    "td3",
+    "sac"
+  ],
+  "fees": [
+    "retail_bnb",
+    "vip3_bnb",
+    "vip6_bnb"
+  ],
+  "seeds": [
+    41,
+    53,
+    67
+  ],
+  "settings": {
+    "hidden": 64,
+    "transitions": 8388608,
+    "envs": 64,
+    "threads": 1,
+    "batch": 256,
+    "buffer": 65536,
+    "start_steps": 4096,
+    "actor_lr": 0.0003,
+    "critic_lr": 0.001,
+    "tau": 0.05,
+    "exploration_noise": 0.2,
+    "target_noise": 0.2,
+    "noise_clip": 0.5,
+    "policy_delay": 2,
+    "sac_initial_alpha": 0.02,
+    "sac_alpha_lr": 0.003,
+    "rollout": 64,
+    "ppo_epochs": 4,
+    "ppo_batch": 1024,
+    "ppo_clip": 0.2,
+    "target_kl": 0.03,
+    "gae_lambda": 0.95,
+    "observation": "full"
+  },
+  "minimum_transitions": 2097152,
+  "evaluation": {
+    "every_transitions": 262144,
+    "paths": 128,
+    "events": 512,
+    "selection_seed": 2026102701,
+    "assessment_seed": 2026102702,
+    "patience_evaluations": 8
+  }
+}

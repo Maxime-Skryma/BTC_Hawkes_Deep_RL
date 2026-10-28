@@ -1,0 +1,77 @@
+name: dot
+data:
+  symbol: DOTUSDT
+  raw:
+  - data/raw/dot
+  tick: 0.001
+splits:
+  train:
+  - 2024-01-01
+  - 2024-02-01
+  - 2024-03-01
+  - 2024-04-01
+  - 2024-05-01
+  - 2024-06-01
+  - 2024-07-01
+  - 2024-08-01
+  - 2024-09-01
+  - 2024-10-01
+  - 2024-11-01
+  - 2024-12-01
+  - 2025-01-01
+  - 2025-02-01
+  - 2025-03-01
+  - 2025-04-01
+  validation: []
+  test:
+  - 2026-01-01
+model:
+  execution: cjr
+  betas:
+  - 2.0
+  - 0.05
+  zetas:
+  - 0.01
+  - 0.03
+  - 0.1
+  - 0.3
+  - 1.0
+  alpha_horizon_s: 10
+  sigma_horizon_s: 60
+  lot_usd: 1000
+  K: 10
+  gamma: 0.01
+  r: 0.016666666666666666
+agent:
+  method: value_only
+  iterations: 20000
+  batch: 4096
+  hidden: 128
+  lr_critic: 0.001
+  polyak: 0.05
+  reset_q: 0.1
+  seed: 11
+  sweep_iterations: 10000
+realism:
+  rho:
+  - 1.0
+  fees:
+    vip6_bnb:
+      maker: 0.00015
+      taker: 0.0002175
+  central:
+    rho: 1.0
+    fee: vip6_bnb
+  replay_seeds:
+  - 11
+  - 23
+  - 37
+benchmark:
+  as_horizon_s: 60.0
+evaluation:
+  sim_seconds: 1800
+  sim_paths: 2048
+  decision_interval_s: 1.0
+  latency_s: 0.1
+  warmup_s: 600
+  stop_s: 86340

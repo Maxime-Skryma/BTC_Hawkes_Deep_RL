@@ -1,0 +1,39 @@
+output: experiences/reproduction_quick_v2
+calibration: experiences/reproduction_quick_v2/calibration.json
+market_config: configs/dot_quick.yaml
+seeds:
+- 11
+algorithms:
+- td3
+- sac
+- ppo
+- value_plus
+settings:
+  hidden: 64
+  transitions: 4096
+  envs: 8
+  threads: 2
+  batch: 32
+  buffer: 4096
+  start_steps: 64
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  tau: 0.05
+  exploration_noise: 0.2
+  target_noise: 0.2
+  noise_clip: 0.5
+  policy_delay: 2
+  sac_initial_alpha: 0.02
+  sac_alpha_lr: 0.003
+  rollout: 16
+  ppo_epochs: 2
+  ppo_batch: 128
+  ppo_clip: 0.2
+  target_kl: 0.03
+  gae_lambda: 0.95
+evaluation:
+  simulation_seconds: 30
+  simulation_paths: 16
+  simulation_seed: 2510
+  historical_split: test
+  path_sampling: 1000

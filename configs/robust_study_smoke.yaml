@@ -1,0 +1,70 @@
+algorithms:
+- td3
+- sac
+- ppo
+- value_plus
+bootstrap_repetitions: 1000
+cache_directory: data/cache
+candidates:
+- as_horizon_s: 15.0
+  constant_distance_factor: 0.5
+  learning_rate_factor: 0.5
+  risk_factor: 0.25
+- as_horizon_s: 60.0
+  constant_distance_factor: 1.0
+  learning_rate_factor: 1.0
+  risk_factor: 1.0
+classical:
+- constant
+- as
+- glft
+- poisson
+- local_hawkes
+- local_hawkes_alpha
+final_seeds:
+- 41
+market_config: configs/robust_study_smoke_market.yaml
+monthly_splits:
+  train:
+  - '2024-01-01'
+  - '2024-01-01'
+  validation:
+  - '2025-05-01'
+  - '2025-05-01'
+  test:
+  - '2026-01-01'
+  - '2026-01-01'
+observations:
+- inventory
+- alpha
+- hawkes
+- full
+output: experiences/robust_study_smoke_v2
+path_sampling: 1000
+raw_directory: data/raw/dot
+settings:
+  actor_lr: 0.0003
+  batch: 16
+  buffer: 512
+  critic_lr: 0.001
+  envs: 8
+  exploration_noise: 0.2
+  gae_lambda: 0.95
+  hidden: 8
+  noise_clip: 0.5
+  policy_delay: 2
+  ppo_batch: 64
+  ppo_clip: 0.2
+  ppo_epochs: 1
+  rollout: 8
+  sac_alpha_lr: 0.003
+  sac_initial_alpha: 0.02
+  start_steps: 16
+  target_kl: 0.03
+  target_noise: 0.2
+  tau: 0.05
+  threads: 1
+  transitions: 512
+tuning_seeds:
+- 11
+tuning_transitions: 256

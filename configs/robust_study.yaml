@@ -1,0 +1,85 @@
+market_config: configs/dot.yaml
+algorithms:
+- td3
+- sac
+- ppo
+- value_plus
+settings:
+  hidden: 64
+  transitions: 524288
+  envs: 64
+  threads: 2
+  batch: 256
+  buffer: 65536
+  start_steps: 4096
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  tau: 0.05
+  exploration_noise: 0.2
+  target_noise: 0.2
+  noise_clip: 0.5
+  policy_delay: 2
+  sac_initial_alpha: 0.02
+  sac_alpha_lr: 0.003
+  rollout: 64
+  ppo_epochs: 4
+  ppo_batch: 1024
+  ppo_clip: 0.2
+  target_kl: 0.03
+  gae_lambda: 0.95
+output: experiences/robust_study_v1
+raw_directory: data/raw/dot
+cache_directory: data/cache
+monthly_splits:
+  train:
+  - '2021-01-01'
+  - '2023-12-01'
+  validation:
+  - '2024-01-01'
+  - '2024-12-01'
+  test:
+  - '2025-01-01'
+  - '2026-10-01'
+observations:
+- inventory
+- alpha
+- hawkes
+- full
+classical:
+- constant
+- as
+- glft
+- poisson
+- local_hawkes
+- local_hawkes_alpha
+tuning_seeds:
+- 11
+- 23
+- 37
+final_seeds:
+- 41
+- 53
+- 67
+- 79
+- 83
+- 97
+- 101
+- 113
+- 127
+- 139
+tuning_transitions: 131072
+path_sampling: 1000
+bootstrap_repetitions: 50000
+candidates:
+- learning_rate_factor: 0.5
+  as_horizon_s: 15.0
+  constant_distance_factor: 0.5
+  risk_factor: 0.25
+- learning_rate_factor: 1.0
+  as_horizon_s: 60.0
+  constant_distance_factor: 1.0
+  risk_factor: 1.0
+- learning_rate_factor: 2.0
+  as_horizon_s: 240.0
+  constant_distance_factor: 2.0
+  risk_factor: 4.0

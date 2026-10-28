@@ -1,0 +1,62 @@
+# Cartea–Jaimungal–Ricci + apprentissage de valeur sans acteur : DOTUSDT (Binance spot).
+# Mêmes réglages que btc.yaml, seuls le symbole, le tick et les données changent.
+name: dot
+data:
+  symbol: DOTUSDT
+  raw: [data/raw/dot]
+  tick: 0.001
+
+splits:
+  train: [2024-01-01, 2024-02-01, 2024-03-01, 2024-04-01, 2024-05-01, 2024-06-01,
+          2024-07-01, 2024-08-01, 2024-09-01, 2024-10-01, 2024-11-01, 2024-12-01,
+          2025-01-01, 2025-02-01, 2025-03-01, 2025-04-01]
+  validation: [2025-05-01, 2025-06-01, 2025-07-01, 2025-08-01, 2025-09-01, 2025-10-01,
+               2025-11-01, 2025-12-01]
+  # Diagnostic personnel : le test est consulté librement, ce n'est pas un holdout vierge.
+  test: [2026-01-01, 2026-02-01, 2026-03-01, 2026-04-01, 2026-05-01, 2026-06-01,
+         2026-07-01, 2026-08-01, 2026-09-01]
+
+model:
+  execution: cjr             # h(δ) = exp(−κδ) ; tous les market orders sont influents
+  betas: [2.0, 0.05]
+  zetas: [0.01, 0.03, 0.1, 0.3, 1.0]
+  alpha_horizon_s: 10
+  sigma_horizon_s: 60
+  lot_usd: 1000
+  K: 10
+  gamma: 0.01
+  r: 0.016666666666666666
+
+agent:
+  method: value_only        # critique seul ; cotations analytiques après saut
+  iterations: 20000
+  batch: 4096
+  hidden: 128
+  lr_critic: 0.001
+  polyak: 0.05                # cible mise à jour assez vite : ~20 itérations par passe de Bellman
+  reset_q: 0.1                # probabilité de retirer q uniformément (couverture des inventaires extrêmes)
+  seed: 11
+  sweep_iterations: 10000     # agents des cellules de sensibilité autres que le cas central
+
+# Exécution CJR : aucun facteur de partage de file ; sensibilité aux frais uniquement.
+realism:
+  rho: [1.0]                # ancien nom technique : facteur d'exécution fixé à 1
+  # Fractions du notionnel. Maker retranché du gain de chaque exécution (c), taker à la liquidation finale.
+  fees:
+    retail_bnb: {maker: 0.00075, taker: 0.00075}   # standard avec BNB
+    vip3_bnb:   {maker: 0.0003,  taker: 0.00045}   # VIP 3 avec BNB
+    vip6_bnb:   {maker: 0.00015, taker: 0.0002175} # VIP 6 avec BNB
+    lp_vip6_bnb: {maker: 0.0,   taker: 0.0002175} # programme liquidité + taker VIP 6 BNB
+  central: {rho: 1.0, fee: vip3_bnb}               # professionnel intermédiaire
+  replay_seeds: [11, 23, 37]
+
+benchmark:
+  as_horizon_s: 60.0  # AS approché, horizon glissant = 1/r ; aucun réglage sur le test
+
+evaluation:
+  sim_seconds: 1800
+  sim_paths: 2048
+  decision_interval_s: 0.1
+  latency_s: 0.1
+  warmup_s: 600
+  stop_s: 86340
