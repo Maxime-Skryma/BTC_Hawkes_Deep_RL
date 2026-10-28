@@ -1,5 +1,7 @@
 # Hawkes models and deep reinforcement learning for DOTUSDT market making
 
+**[📄 Read the paper (PDF)](Hawkes_DeepRL_MarketMaking_paper__2_.pdf)**
+
 **[▶ Watch the experiment — Hawkes market making with TD3](docs/videos/HawkesMarketTD3-2.mp4)**
 
 This study is a continuation of [Spread_Crypto](https://github.com/Maxime-Skryma/Spread_Crypto).
